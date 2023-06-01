@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# mesto-react
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Проект: Место на реакте
 
-## Available Scripts
+## Описание проектной работы
 
-In the project directory, you can run:
+Данный проект состоит из одностраничного ресурса, который позволяет пользователю добавлять фотографии красивых мест. Данная страница направлена на то, чтобы дать возможность людям делиться местами, которые они посетили.
 
-### `npm start`
+В проекте используются некоторые технологии, которые были изучены в процессе прохождения текущего и прошедших спринтов, а именно:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Секции строятся в соответствии с grid и flex технологиями, чтобы помочь реализовать адаптивную верстку;
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- В этом спринте к проекту постепенно подключается JavaScript, с помощью него реализуются такие вещи, как возможность изменять имя и био профиля, ставить лайки, а в будущем добавлять и удалять карточки с фотографиями;
 
-### `npm test`
+- Код приведен в порядок благодаря организации файлов по методологии БЭМ, а именно - по Nested структуре;
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- На сайте применены анимации и трансформации, которые реализованы через CSS. Тут можно найти плавную смену прозрачности через псевдоклассы, ссылки меняют свою прозрачность в соответствии со своим состоянием;
 
-### `npm run build`
+- Этот проект отличается от предыдущего только тем, что теперь мы постепенно рефакторим его на реакт
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Ссылка на GitHub Pages:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ✨ пока отсутствует ✨
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Следующим шагом в доработке проекта станет продолжение портирования его на реакт.
