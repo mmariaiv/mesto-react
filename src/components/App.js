@@ -53,6 +53,7 @@ function App() {
 				isOpen={isEditProfilePopupOpen}
 				onClick={handleEditProfileClick}
 				onClose={closeAllPopups}
+				button="Сохранить"
 			>
 				<label className="popup__form-field">
 					<input
@@ -81,9 +82,6 @@ function App() {
 					/>
 					<span className="popup__input-error bio-input-error"></span>
 				</label>
-				<button className="popup__submit-button" type="submit">
-					Сохранить
-				</button>
 			</PopupWithForm>
 
 			<PopupWithForm
@@ -92,6 +90,7 @@ function App() {
 				isOpen={isAddPlacePopupOpen}
 				onClick={handleAddPlaceClick}
 				onClose={closeAllPopups}
+				button="Создать"
 			>
 				<label className="popup__form-field">
 					<input
@@ -118,9 +117,6 @@ function App() {
 					/>
 					<span className="popup__input-error link-input-error"></span>
 				</label>
-				<button className="popup__submit-button" type="submit">
-					Создать
-				</button>
 			</PopupWithForm>
 
 			<PopupWithForm
@@ -129,6 +125,7 @@ function App() {
 				isOpen={isEditAvatarPopupOpen}
 				onClick={handleEditAvatarClick}
 				onClose={closeAllPopups}
+				button="Сохранить"
 			>
 				<label className="popup__form-field">
 					<input
@@ -141,9 +138,6 @@ function App() {
 					/>
 					<span className="popup__input-error avatar-input-error"></span>
 				</label>
-				<button className="popup__submit-button" type="submit">
-					Сохранить
-				</button>
 			</PopupWithForm>
 
 			<ImagePopup card={selectedCard} onClose={closeAllPopups} />
