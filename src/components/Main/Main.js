@@ -1,23 +1,9 @@
 import React from "react";
-import { api } from "../../utils/api";
 import Card from "../Card/Card";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Main(props) {
-	const [userName, setUserName] = React.useState("");
-	const [userDescription, setUserDescription] = React.useState("");
-	const [userAvatar, setUserAvatar] = React.useState("");
-	const [cards, setCards] = React.useState([]);
-
-	React.useEffect(() => {
-		Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
-			([info, initialCards]) => {
-				setUserName(info.name);
-				setUserDescription(info.about);
-				setUserAvatar(info.avatar);
-				setCards(initialCards);
-			}
-		);
-	}, []);
+	const currentUser = React.useContext(CurrentUserContext);
 
 	return (
 		<main className="content">
@@ -29,14 +15,14 @@ function Main(props) {
 						onClick={props.onEditAvatar}
 					>
 						<img
-							src={userAvatar}
+							src={currentUser.userAvatar}
 							alt="Аватар пользователя"
 							className="profile__avatar"
 						/>
 					</button>
 					<div className="profile__info">
-						<h1 className="profile__name">{userName}</h1>
-						<p className="profile__bio">{userDescription}</p>
+						<h1 className="profile__name">{currentUser.userName}</h1>
+						<p className="profile__bio">{currentUser.userDescription}</p>
 						<button
 							className="profile__edit-button"
 							type="button"
@@ -52,12 +38,14 @@ function Main(props) {
 			</section>
 
 			<section className="elements">
-				{cards.map((newCard) => {
+				{props.cards.map((newCard) => {
 					return (
 						<Card
 							key={newCard._id}
 							card={newCard}
 							onCardClick={props.onCardClick}
+							onCardLike={props.onCardLike}
+							onCardDelete={props.onCardDelete}
 						/>
 					);
 				})}

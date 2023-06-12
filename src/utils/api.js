@@ -91,6 +91,14 @@ class Api {
 		});
 	}
 
+	changeLikeCardStatus(cardId, isLiked) {
+		if (!isLiked) {
+			return this.deleteLikeOnCard(cardId);
+		} else {
+			return this.putLikeOnCard(cardId);
+		}
+	}
+
 	_getResponseData(res) {
 		if (!res.ok) {
 			return Promise.reject(`Ошибка: ${res.status}`);

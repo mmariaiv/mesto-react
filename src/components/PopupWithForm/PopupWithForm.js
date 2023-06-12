@@ -15,6 +15,7 @@ function PopupWithForm(props) {
 				<form
 					name={props.name}
 					className={`popup__form  popup__form_${props.name}`}
+					onSubmit={props.onSubmit}
 					noValidate
 				>
 					<fieldset className="popup__form-container">
