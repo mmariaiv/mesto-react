@@ -12,10 +12,14 @@ export default function AddPlacePopup(props) {
 			name: newCardNameRef.current.value,
 			link: newCardLinkRef.current.value,
 		});
-
-		props.onClose();
-		e.target.reset();
 	}
+
+	React.useEffect(() => {
+		if (props.isOpen) {
+			newCardLinkRef.current.value = "";
+			newCardNameRef.current.value = "";
+		}
+	});
 
 	return (
 		<PopupWithForm
@@ -24,7 +28,7 @@ export default function AddPlacePopup(props) {
 			isOpen={props.isOpen}
 			onClose={props.onClose}
 			onSubmit={handleSubmit}
-			button="Создать"
+			button={props.isLoading ? "Создание..." : "Создать"}
 		>
 			<label className="popup__form-field">
 				<input

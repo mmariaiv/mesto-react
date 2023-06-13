@@ -14,8 +14,6 @@ export default function EditProfilePopup(props) {
 			name,
 			about: description,
 		});
-
-		props.onClose();
 	}
 
 	React.useEffect(() => {
@@ -37,7 +35,7 @@ export default function EditProfilePopup(props) {
 			title="Редактировать профиль"
 			isOpen={props.isOpen}
 			onClose={props.onClose}
-			button="Сохранить"
+			button={props.isLoading ? "Сохранение..." : "Сохранить"}
 			onSubmit={handleSubmit}
 		>
 			<label className="popup__form-field">

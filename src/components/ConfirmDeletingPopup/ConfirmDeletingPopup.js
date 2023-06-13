@@ -10,7 +10,6 @@ export default function ConfirmDeletingPopup(props) {
 	function handleConfirmDeleting() {
 		const card = props.selectedCard;
 		props.onConfirm(card);
-		props.onClose();
 	}
 	return (
 		<div
@@ -29,7 +28,7 @@ export default function ConfirmDeletingPopup(props) {
 					type="button"
 					onClick={handleConfirmDeleting}
 				>
-					Да
+					{props.isLoading ? "Удаление..." : "Да"}
 				</button>
 			</div>
 		</div>

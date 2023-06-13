@@ -12,9 +12,12 @@ export default function EditAvatarPopup(props) {
 			avatar: userAvatarRef.current.value,
 		});
 
-		props.onClose();
-		e.target.reset();
+		// e.target.reset();
 	}
+
+	React.useEffect(() => {
+		userAvatarRef.current.value = "";
+	});
 
 	return (
 		<PopupWithForm
@@ -23,7 +26,7 @@ export default function EditAvatarPopup(props) {
 			isOpen={props.isOpen}
 			onClose={props.onClose}
 			onSubmit={handleSubmit}
-			button="Сохранить"
+			button={props.isLoading ? "Сохранение..." : "Сохранить"}
 		>
 			<label className="popup__form-field">
 				<input
