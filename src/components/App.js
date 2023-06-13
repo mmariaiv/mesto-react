@@ -2,11 +2,12 @@ import React from "react";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import Main from "./Main/Main";
-import PopupWithForm from "./PopupWithForm/PopupWithForm";
+
 import ImagePopup from "./ImagePopup/ImagePopup";
 import { api } from "../utils/api";
 import EditProfilePopup from "./EditProfilePopup/EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup/EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup/AddPlacePopup";
 
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
@@ -92,7 +93,6 @@ function App() {
 		api
 			.changeUserInfo(newUserInfo)
 			.then((res) => {
-				console.log(res);
 				setCurrentUser({
 					userName: res.name,
 					userDescription: res.about,
@@ -102,6 +102,33 @@ function App() {
 			})
 			.catch((err) => {
 				console.log(err, "error in updating userInfo");
+			});
+	}
+
+	function handleUpdateAvatar(newAvatarUrl) {
+		api
+			.changeAvatarPhoto(newAvatarUrl)
+			.then((res) => {
+				setCurrentUser({
+					userName: res.name,
+					userDescription: res.about,
+					userAvatar: res.avatar,
+					_id: res._id,
+				});
+			})
+			.catch((err) => {
+				console.log(err, "error in updating avatar");
+			});
+	}
+
+	function handleAddPlace(newCardInfo) {
+		api
+			.addNewCard(newCardInfo)
+			.then((res) => {
+				setCards([res, ...cards]);
+			})
+			.catch((err) => {
+				console.log(err, "error in adding new card");
 			});
 	}
 
@@ -136,46 +163,16 @@ function App() {
 				<EditAvatarPopup
 					onClose={closeAllPopups}
 					isOpen={isEditAvatarPopupOpen}
+					onUpdateAvatar={handleUpdateAvatar}
+				/>
+
+				<AddPlacePopup
+					onClose={closeAllPopups}
+					isOpen={isAddPlacePopupOpen}
+					onAddPlace={handleAddPlace}
 				/>
 
 				{/* <PopupWithForm
-					name="edit-profile"
-					title="Редактировать профиль"
-					isOpen={isEditProfilePopupOpen}
-					onClick={handleEditProfileClick}
-					onClose={closeAllPopups}
-					button="Сохранить"
-				>
-					<label className="popup__form-field">
-						<input
-							name="name"
-							id="id-input"
-							className="popup__input popup__input_type_name"
-							placeholder="Введите имя"
-							type="text"
-							required
-							minLength="2"
-							maxLength="40"
-						/>
-						<span className="popup__input-error id-input-error"></span>
-					</label>
-
-					<label className="popup__form-field">
-						<input
-							name="about"
-							id="bio-input"
-							className="popup__input popup__input_type_bio"
-							placeholder="Введите описание"
-							type="text"
-							required
-							minLength="2"
-							maxLength="200"
-						/>
-						<span className="popup__input-error bio-input-error"></span>
-					</label>
-				</PopupWithForm> */}
-
-				<PopupWithForm
 					name="add-photo"
 					title="Новое место"
 					isOpen={isAddPlacePopupOpen}
@@ -207,27 +204,6 @@ function App() {
 							required
 						/>
 						<span className="popup__input-error link-input-error"></span>
-					</label>
-				</PopupWithForm>
-
-				{/* <PopupWithForm
-					name="update-avatar"
-					title="Обновить аватар"
-					isOpen={isEditAvatarPopupOpen}
-					onClick={handleEditAvatarClick}
-					onClose={closeAllPopups}
-					button="Сохранить"
-				>
-					<label className="popup__form-field">
-						<input
-							name="avatar"
-							className="popup__input popup__input_type_link"
-							id="avatar-input"
-							placeholder="Ссылка на аватар"
-							type="url"
-							required
-						/>
-						<span className="popup__input-error avatar-input-error"></span>
 					</label>
 				</PopupWithForm> */}
 
