@@ -10,6 +10,7 @@ import EditAvatarPopup from "./EditAvatarPopup/EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup/AddPlacePopup";
 
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import ConfirmDeletingPopup from "./ConfirmDeletingPopup/ConfirmDeletingPopup";
 
 function App() {
 	const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -17,8 +18,11 @@ function App() {
 	const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
 	const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
 		React.useState(false);
+	const [isConfirmDeletingPopupOpen, setIsConfirmDeletingPopupOpen] =
+		React.useState(false);
 
 	const [selectedCard, setSelectedCard] = React.useState(null);
+	const [deletingCard, setDeletingCard] = React.useState(null);
 
 	const [CurrentUser, setCurrentUser] = React.useState({
 		userName: "",
@@ -70,15 +74,19 @@ function App() {
 		return setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
 	}
 
-	function handleCardDelete(card) {
-		console.log(card);
-		api.deleteCard(card._id).then((res) => {
-			console.log(res);
+	function handleCardDeleteCLick(card) {
+		setDeletingCard(card);
+		return setIsConfirmDeletingPopupOpen(!isConfirmDeletingPopupOpen);
+	}
 
+	function handleCardDelete(card) {
+		api.deleteCard(card._id).then((res) => {
 			setCards((state) => {
 				return state.filter((c) => card._id !== c._id);
 			});
 		});
+
+		closeAllPopups();
 	}
 
 	function handleCardLike(card) {
@@ -136,7 +144,9 @@ function App() {
 		setIsEditProfilePopupOpen(false);
 		setIsEditAvatarPopupOpen(false);
 		setIsAddPlacePopupOpen(false);
+		setIsConfirmDeletingPopupOpen(false);
 		setSelectedCard(null);
+		setDeletingCard(null);
 	}
 
 	return (
@@ -149,7 +159,8 @@ function App() {
 					onAddPlace={handleAddPlaceClick}
 					onCardClick={handleCardClick}
 					onCardLike={handleCardLike}
-					onCardDelete={handleCardDelete}
+					// onCardDelete={handleCardDelete}
+					onCardDelete={handleCardDeleteCLick}
 					cards={cards}
 				/>
 				<Footer />
@@ -172,64 +183,15 @@ function App() {
 					onAddPlace={handleAddPlace}
 				/>
 
-				{/* <PopupWithForm
-					name="add-photo"
-					title="Новое место"
-					isOpen={isAddPlacePopupOpen}
-					onClick={handleAddPlaceClick}
-					onClose={closeAllPopups}
-					button="Создать"
-				>
-					<label className="popup__form-field">
-						<input
-							name="picture-name"
-							className="popup__input popup__input_type_picture-name"
-							id="name-input"
-							placeholder="Название"
-							type="text"
-							required
-							minLength="2"
-							maxLength="30"
-						/>
-						<span className="popup__input-error name-input-error"></span>
-					</label>
-
-					<label className="popup__form-field">
-						<input
-							name="link"
-							className="popup__input popup__input_type_link"
-							id="link-input"
-							placeholder="Ссылка на картинку"
-							type="url"
-							required
-						/>
-						<span className="popup__input-error link-input-error"></span>
-					</label>
-				</PopupWithForm> */}
-
 				<ImagePopup card={selectedCard} onClose={closeAllPopups} />
-				{/* 
-
-			<div className="popup popup_image">
-				<div className="popup__photo-container">
-					<button type="button" className="popup__close-button"></button>
-					<img src=" " alt="" className="popup__photo" />
-					<h2 className="popup__description"></h2>
-				</div>
 			</div>
 
-			<div className="popup popup_confirm">
-				<div className="popup__container">
-					<button type="button" className="popup__close-button"></button>
-					<h2 className="popup__title">Вы уверены?</h2>
-					<button className="popup__confirm-button" type="button">
-						Да
-					</button>
-				</div>
-			</div>
-
-			*/}
-			</div>
+			<ConfirmDeletingPopup
+				onClose={closeAllPopups}
+				isOpen={isConfirmDeletingPopupOpen}
+				onConfirm={handleCardDelete}
+				selectedCard={deletingCard}
+			/>
 		</CurrentUserContext.Provider>
 	);
 }
