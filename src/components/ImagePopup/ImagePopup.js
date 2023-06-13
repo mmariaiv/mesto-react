@@ -1,8 +1,17 @@
 import React from "react";
 
 function ImagePopup({ card, onClose }) {
+	function closeByClickingOutside(event) {
+		if (event.currentTarget === event.target) {
+			onClose();
+		}
+	}
+
 	return (
-		<div className={`popup popup_image ${card && `popup_opened`}`}>
+		<div
+			className={`popup popup_image ${card && `popup_opened`}`}
+			onClick={closeByClickingOutside}
+		>
 			<div className="popup__photo-container">
 				<button
 					type="button"

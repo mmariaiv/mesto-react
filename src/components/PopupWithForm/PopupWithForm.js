@@ -1,9 +1,16 @@
 import React from "react";
 
 function PopupWithForm(props) {
+	function closeByClickingOutside(event) {
+		if (event.currentTarget === event.target) {
+			props.onClose();
+		}
+	}
+
 	return (
 		<div
 			className={`popup popup_${props.name} ${props.isOpen && `popup_opened`}`}
+			onClick={closeByClickingOutside}
 		>
 			<div className="popup__container">
 				<button
