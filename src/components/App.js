@@ -90,11 +90,14 @@ function App() {
 					return state.filter((c) => card._id !== c._id);
 				});
 			})
+			.then(() => {
+				closeAllPopups();
+			})
 			.catch((err) => {
 				console.log(err, "error in deleting card");
 			})
 			.finally(() => {
-				closeAllPopups();
+				setIsLoadingState(false);
 			});
 	}
 
@@ -125,11 +128,14 @@ function App() {
 					_id: res._id,
 				});
 			})
+			.then(() => {
+				closeAllPopups();
+			})
 			.catch((err) => {
 				console.log(err, "error in updating userInfo");
 			})
 			.finally(() => {
-				closeAllPopups();
+				setIsLoadingState(false);
 			});
 	}
 
@@ -145,11 +151,14 @@ function App() {
 					_id: res._id,
 				});
 			})
+			.then(() => {
+				closeAllPopups();
+			})
 			.catch((err) => {
 				console.log(err, "error in updating avatar");
 			})
 			.finally(() => {
-				closeAllPopups();
+				setIsLoadingState(false);
 			});
 	}
 
@@ -160,16 +169,18 @@ function App() {
 			.then((res) => {
 				setCards([res, ...cards]);
 			})
+			.then(() => {
+				closeAllPopups();
+			})
 			.catch((err) => {
 				console.log(err, "error in adding new card");
 			})
 			.finally(() => {
-				closeAllPopups();
+				setIsLoadingState(false);
 			});
 	}
 
 	function closeAllPopups() {
-		setIsLoadingState(false);
 		setIsEditProfilePopupOpen(false);
 		setIsEditAvatarPopupOpen(false);
 		setIsAddPlacePopupOpen(false);

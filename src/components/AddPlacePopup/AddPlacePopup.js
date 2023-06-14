@@ -19,7 +19,7 @@ export default function AddPlacePopup(props) {
 			newCardLinkRef.current.value = "";
 			newCardNameRef.current.value = "";
 		}
-	});
+	}, [props.isOpen]);
 
 	return (
 		<PopupWithForm
